@@ -3,7 +3,7 @@ require 'http'
 
 Thread.new do
   while true
-    Site.all.each do |site|
+    Site.enabled.find_each do |site|
       begin
         res = HTTP.get(site.url)
         if res.code >= 400
