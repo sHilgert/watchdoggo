@@ -1,9 +1,9 @@
 module MessageReplier
   class UnwatchSiteMessage < BaseMessage
     def reply
-      return could_not_find unless site.present?
       return invalid_format unless text.split.count == 2
-
+      return could_not_find unless site.present?
+      
       current_user.sites.delete(site)
       site.reload
       site.disable! if site.users.empty?
